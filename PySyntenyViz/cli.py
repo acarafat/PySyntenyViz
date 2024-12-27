@@ -15,14 +15,20 @@ commands = {
 def main(args=None):
     if len(sys.argv) < 2:
         print("Usage: synviz <command> [<args>]")
+        print("")
+        print("Available commands: synteny, revcomp, reorder, change_origin")
+        print("")
+        print("Use `-h` or `--h` flag to get details of the command, i.e.: `synviz <command> --help`")
         sys.exit(1)
 
     command = sys.argv[1]
+
     if command in commands:
         # Import the appropriate module based on the command
         module = importlib.import_module(commands[command])
         
         # Call the main() function of the module, passing all remaining sys.argv arguments
+        print(sys.argv[2:])
         module.main(sys.argv[2:])  # Pass remaining arguments to module's main()
     else:
         print(f"Error: Unrecognized command '{command}'")

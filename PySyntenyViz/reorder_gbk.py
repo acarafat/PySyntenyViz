@@ -43,7 +43,7 @@ def main(args=None):
         help="Reorder contigs by size in descending order."
     )
 
-    args = parser.parse_args()
+    args = parser.parse_args(args)
 
     # Read all records from the GenBank file
     records = list(SeqIO.parse(args.input, "genbank"))

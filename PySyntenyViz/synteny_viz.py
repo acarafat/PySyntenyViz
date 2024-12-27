@@ -143,11 +143,11 @@ def plot_synteny(gbk_list, output_png, annotate_file=None, coordinate_file=None,
     #############
     # Alignment #
     #############
-    if alignment != None:
+    if alignment in ["mummer", None]:
         print('Creating MUMmer alignment ...')
         align_coords = MUMmer(gbk_list).run()
         
-    else:
+    elif alignment == "mmseqs":
         print('Creating MMseqs alignment ...')
         align_coords = MMseqs(gbk_list).run()
 
@@ -177,7 +177,7 @@ def main(args=None):
     parser.add_argument('--coordinate', '-c', type=str, required=False, help="Coordinate position from GenBank file to annotate.")
     parser.add_argument('--alignment', '-t', type=str, required=False, help="Alignment algorithm to use. Default MMSeqs. Options: `mummer` and `mmseqs` (mummer for fast genome level alignment, mmseqs for fast protein level alignment).")
 
-    args = parser.parse_args()
+    args = parser.parse_args(args)
 
     print('Getting all the GenBank files ...')
     if args.input_dir != None:

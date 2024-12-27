@@ -85,7 +85,7 @@ def main(args=None):
                         required=True,
                         help='The specific contig to rotate (by ID)')
 
-    args = parser.parse_args()
+    args = parser.parse_args(args)
 
     records = open_sequence(args.input)
     origin = args.origin - 1
