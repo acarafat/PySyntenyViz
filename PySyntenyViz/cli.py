@@ -7,14 +7,14 @@ commands = {
     'change_origin': 'PySyntenyViz.change_gbk_origin',
     'revcomp': 'PySyntenyViz.gbk_rc',
     'reorder': 'PySyntenyViz.reorder_gbk',
-    'synteny_viz': 'PySyntenyViz.synteny_viz',
+    'synteny': 'PySyntenyViz.synteny_viz',
     # Add more commands here
 }
 
 
 def main(args=None):
     if len(sys.argv) < 2:
-        print("Usage: pysyntenyviz <command> [<args>]")
+        print("Usage: synviz <command> [<args>]")
         sys.exit(1)
 
     command = sys.argv[1]

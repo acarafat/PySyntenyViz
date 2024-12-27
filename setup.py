@@ -6,11 +6,11 @@ setup(
     packages=find_packages(),
     entry_points={
         'console_scripts': [
-            'pysyntenyviz=PySyntenyViz.cli:main',
+            'synviz=PySyntenyViz.cli:main',
         ],
     },
     install_requires=[
-        'Bio', 'argparse', 'pandas'
+        'Bio', 'argparse', 'pandas', 'pygenomeviz'
     ]
-    #test_suite='tests'  # Add tests directory for automatic test discovery
+
 )
