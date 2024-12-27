@@ -167,7 +167,7 @@ def plot_synteny(gbk_list, output_png, annotate_file=None, coordinate_file=None,
 
 
 # Parse input, program logic-flow
-def main():
+def main(args=None):
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--input_dir', '-i', type=str, required=False, help="Path to directory containing GenBank files")

@@ -54,7 +54,7 @@ def reverse_complement_genbank(input_file, contig):
 
     return reversed_records
 
-if __name__ == "__main__":
+def main(args=None):
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--input', '-i', type=str, required=True)
@@ -66,3 +66,7 @@ if __name__ == "__main__":
     revcomp_records = reverse_complement_genbank(args.input, args.contig)
 
     SeqIO.write(revcomp_records, args.output, "genbank")
+
+
+if __name__ == "__main__":
+    main()

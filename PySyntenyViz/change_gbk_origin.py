@@ -63,7 +63,7 @@ def rotate_record_origin(record, origin):
 
     return record
 
-def main():
+def main(args=None):
     parser = argparse.ArgumentParser(description='Change the origin of a circular DNA GenBank file')
 
     parser.add_argument('--origin', '-n',
