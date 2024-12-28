@@ -1,6 +1,9 @@
 # PySyntenyViz
 A CLI to create synteny plots for small genomes or plasmids. 
 
+# Requirement
+`MUMmer`, `Blast`, and `MMSeqs`
+
 # Installation
 Releasing to PyPi soon.
 To build and install from local: use `pip wheel`:
