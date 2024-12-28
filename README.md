@@ -1,5 +1,6 @@
 # PySyntenyViz
 A CLI to create synteny plots for small genomes or plasmids. 
+A CLI to create synteny plots for small genomes or plasmids. 
 
 # Requirement
 `MUMmer`, `Blast`, and `MMSeqs`
@@ -30,4 +31,3 @@ Available commands: synteny, revcomp, reorder, change_origin
 
 ## Getting help
 Use `-h` or `--h` flag to get details of the command, i.e.: `synviz <command> --help` 
-

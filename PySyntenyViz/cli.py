@@ -28,7 +28,6 @@ def main(args=None):
         module = importlib.import_module(commands[command])
         
         # Call the main() function of the module, passing all remaining sys.argv arguments
-        print(sys.argv[2:])
         module.main(sys.argv[2:])  # Pass remaining arguments to module's main()
     else:
         print(f"Error: Unrecognized command '{command}'")
