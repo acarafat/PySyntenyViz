@@ -8,7 +8,7 @@ commands = {
     'revcomp': 'PySyntenyViz.gbk_rc',
     'reorder': 'PySyntenyViz.reorder_gbk',
     'synteny': 'PySyntenyViz.synteny_viz',
-    # Add more commands here
+    # Add more commands here 
 }
 
 

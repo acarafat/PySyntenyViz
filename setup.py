@@ -10,7 +10,7 @@ setup(
         ],
     },
     install_requires=[
-        'Bio', 'argparse', 'pandas', 'pygenomeviz'
+        'biopython', 'argparse', 'pandas', 'pygenomeviz', 'python<=3.11'
     ]
 
 )
