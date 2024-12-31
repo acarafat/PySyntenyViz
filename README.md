@@ -34,6 +34,9 @@ Available commands: `synteny`, `revcomp`, `reorder`, `change_origin`
 Use `-h` or `--h` flag to get details of the command, i.e.: `synviz <command> --help` 
 
 
+## Annotation
+There are two options for annotating the synteny plot. One option is by providing GenBank features, which will annotate the particular feature of interest based on its presence in the GenBank file. Another option is to provide exact coordinates, so that those coordinates will be annotated specifically.
+
 ## Examples
 Read GenBank files as input from directory, plot Agrobacterium synteny with MMSeqs2 alignment and annotate by GenBank feature:
 ```
