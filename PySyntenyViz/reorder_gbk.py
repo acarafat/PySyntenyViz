@@ -29,8 +29,8 @@ def reorder_by_size(records):
 
 def main(args=None):
     parser = argparse.ArgumentParser(description="Reorder contigs in a GenBank file.")
-    parser.add_argument("--input", type=str, help="Path to the input GenBank file.")
-    parser.add_argument("--output", type=str, help="Path to save the reordered GenBank file.")
+    parser.add_argument("--input", "-i", type=str, help="Path to the input GenBank file.")
+    parser.add_argument("--output", "-o", type=str, help="Path to save the reordered GenBank file.")
     parser.add_argument(
         "--order",
         type=str,
