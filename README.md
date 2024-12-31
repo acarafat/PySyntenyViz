@@ -39,6 +39,8 @@ There are two options for annotating the synteny plot. One option is by providin
 
 ## Generating Synteny with two different annotation options
 
+![alt text](synteny_coords.png "Synteny with annotation by custom coordinates")
+
 Input file `strainlist.txt`:
 ```
 /path/to/Strain_1.gbk
@@ -79,7 +81,7 @@ Command for synteny plot:
 ```
 synviz synteny --input_list strainlist.txt --output synteny_output.pdf --alignment mmseqs --coordinate coordinates.tsv
 ```
-![alt text](synteny_coords.png "Synteny with annotation by custom coordinates")
+
 
 If you want to use feature types for generic annotation, use the `--annotate` flag and provide `annotation.tsv` file instead:
 | feature_type   | qualifier           | value | face_color | label |
