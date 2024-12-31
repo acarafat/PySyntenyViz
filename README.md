@@ -1,12 +1,13 @@
 # PySyntenyViz
-A CLI to create synteny plots for small genomes or plasmids. 
+A CLI to create and annotate synteny plots for microbial genomes or plasmids. It uses GenBank files as input and creates alignment on the fly. It provides additional tools to edit the GenBank files to customize the synteny plot.
 
 
 # Requirement
-`MUMmer` and/or `MMSeqs` should be installed.
+`MUMmer` and/or `MMSeqs` should be installed to run the aligner.
 
 # Installation
 Releasing to PyPi soon.
+
 To build and install from local: use `pip wheel`:
 
 ```
