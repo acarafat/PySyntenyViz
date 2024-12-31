@@ -6,7 +6,7 @@ A CLI to create and annotate synteny plots for microbial genomes or plasmids. It
 `MUMmer` and/or `MMSeqs` should be installed to run the aligner.
 
 # Installation
-Releasing to PyPi soon.
+Releasing to PyPI soon.
 
 To build and install from local: use `pip wheel`:
 
@@ -47,33 +47,33 @@ Input file `strainlist.txt`:
 ```
 
 Coordinate file for annotation using `--coordinate` flag: `coordinates.tsv`
-| gbk                           | locus             | label          | start  | end       | color | strand | plotstyle |
-|-------------------------------|-------------------|----------------|--------|-----------|-------|--------|-----------|
-| Strain_1  | Contig_1  | nod            | 5413   | 14992     | blue  | 1      | box       |
-| Strain_1  | Contig_1  | nif/fix | 19407  | 42752  | magenta | 1 | box   |        |           |
-| Strain_1  | Contig_1  | nif/fix | 175637 | 187210 | magenta | 1 | box   |        |           |
-| Strain_1  | Contig_1  | T4SS           | 357052 | 370816    | brown | 1      | box       |
-| Strain_1  | Contig_1  | bio            | 377557 | 381609    | black | 1      | box       |
-| Strain_1  | Contig_1  | pan            | 386274 | 387991    | black | 1      | box       |
-| Strain_1  | Contig_1  | nod            | 391054 | 393012    | blue  | 1      | box       |
-| Strain_1  | Contig_1  | nif/fix | 421473 | 429473 | magenta | 1 | box   |        |           |
-| Strain_1  | Contig_1  | T4SS           | 557560 | 569180    | brown | 1      | box       |
-| Strain_2 | Contig_1 | nod            | 3972   | 9259      | blue  | 1      | box       |
-| Strain_2 | Contig_1 | nif/fix | 30871  | 44544  | magenta | 1 | box   |        |           |
-| Strain_2 | Contig_1 | nif/fix | 68132  | 84403  | magenta | 1 | box   |        |           |
-| Strain_2 | Contig_1 | bio            | 297983 | 302023    | black | 1      | box       |
-| Strain_2 | Contig_1 | pan            | 306814 | 308405    | black | 1      | box       |
-| Strain_2 | Contig_1 | nif/fix | 330400 | 338787 | magenta | 1 | box   |        |           |
-| Strain_2 | Contig_1 | T4SS           | 392045 | 403669    | brown | 1      | box       |
-| Strain_3  | Contig_1  | nif/fix | 479987 | 488559 | magenta | 1 | box   |        |           |
-| Strain_3  | Contig_1  | T4SS           | 467546 | 479162    | brown | 1      | box       |
-| Strain_3  | Contig_1  | T4SS           | 429923 | 451808    | brown | 1      | box       |
-| Strain_3  | Contig_1  | nod            | 369759 | 373679    | blue  | 1      | box       |
-| Strain_3  | Contig_1  | nod            | 357170 | 357766    | blue  | 1      | box       |
-| Strain_3  | Contig_1  | nif/fix | 157877 | 164992 | magenta | 1 | box   |        |           |
-| Strain_3  | Contig_1  | nif/fix | 108463 | 122788 | magenta | 1 | box   |        |           |
-| Strain_3  | Contig_1  | bio            | 78637  | 84154     | black | 1      | box       |
-| Strain_3  | Contig_1  | nod            | 74067  | 77670     | blue  | 1      | box       |
+| gbk       | locus     | label          | start  | end       | color   | strand | plotstyle |
+|-----------|-----------|----------------|--------|-----------|---------|--------|-----------|
+| Strain_1  | Contig_1  | nod            | 5413   | 14992     | blue    | 1      | box       |
+| Strain_1  | Contig_1  | nif/fix        | 19407  | 42752     | magenta | 1      | box       |
+| Strain_1  | Contig_1  | nif/fix        | 175637 | 187210    | magenta | 1      | box       |
+| Strain_1  | Contig_1  | T4SS           | 357052 | 370816    | brown   | 1      | box       |
+| Strain_1  | Contig_1  | bio            | 377557 | 381609    | black   | 1      | box       |
+| Strain_1  | Contig_1  | pan            | 386274 | 387991    | black   | 1      | box       |
+| Strain_1  | Contig_1  | nod            | 391054 | 393012    | blue    | 1      | box       |
+| Strain_1  | Contig_1  | nif/fix        | 421473 | 429473    | magenta | 1      | box       |
+| Strain_1  | Contig_1  | T4SS           | 557560 | 569180    | brown   | 1      | box       |
+| Strain_2  | Contig_1  | nod            | 3972   | 9259      | blue    | 1      | box       |
+| Strain_2  | Contig_1  | nif/fix        | 30871  | 44544     | magenta | 1      | box       |
+| Strain_2  | Contig_1  | nif/fix        | 68132  | 84403     | magenta | 1      | box       |
+| Strain_2  | Contig_1  | bio            | 297983 | 302023    | black   | 1      | box       |
+| Strain_2  | Contig_1  | pan            | 306814 | 308405    | black   | 1      | box       |
+| Strain_2  | Contig_1  | nif/fix        | 330400 | 338787    | magenta | 1      | box       |
+| Strain_2  | Contig_1  | T4SS           | 392045 | 403669    | brown   | 1      | box       |
+| Strain_3  | Contig_1  | nif/fix        | 479987 | 488559    | magenta | 1      | box       |
+| Strain_3  | Contig_1  | T4SS           | 467546 | 479162    | brown   | 1      | box       |
+| Strain_3  | Contig_1  | T4SS           | 429923 | 451808    | brown   | 1      | box       |
+| Strain_3  | Contig_1  | nod            | 369759 | 373679    | blue    | 1      | box       |
+| Strain_3  | Contig_1  | nod            | 357170 | 357766    | blue    | 1      | box       |
+| Strain_3  | Contig_1  | nif/fix        | 157877 | 164992    | magenta | 1      | box       |
+| Strain_3  | Contig_1  | nif/fix        | 108463 | 122788    | magenta | 1      | box       |
+| Strain_3  | Contig_1  | bio            | 78637  | 84154     | black   | 1      | box       |
+| Strain_3  | Contig_1  | nod            | 74067  | 77670     | blue    | 1      | box       |
 
 Command for synteny plot:
 ```
