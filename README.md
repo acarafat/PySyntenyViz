@@ -34,43 +34,43 @@ Use `-h` or `--h` flag to get details of the command, i.e.: `synviz <command> --
 
 
 ## Examples
-Read GenBank files as input from directory, plot Agrobacterium synteny with MMSeqs2 alignment and annotate by GenBank feature
+Read GenBank files as input from directory, plot Agrobacterium synteny with MMSeqs2 alignment and annotate by GenBank feature:
 ```
 synviz synteny --input_dir agrobacterium --output agro_original.png --annotate annotate_synteny.tsv --alignment mmseqs
 ```
 
-Use MUMmer alignment instead
+Use MUMmer alignment instead:
 ```
 synviz synteny --input_dir agrobacterium --output agro_original.mummer.png --annotate annotate_synteny.tsv
 ```
 
-Reverse-complement a contig and plot synteny, take input from a list
+Reverse-complement a contig and plot synteny, take input from a list:
 ```
 synviz revcomp -i agrobacterium/47_2_polished_final_renamed.gbk -o agrobacterium/47_2_polished_final_renamed.rc.gbk -c chromosome
 synviz synteny --input_list agrolist.txt --output agro_rc.mmseqs.png --alignment mmseqs --annotate annotate_synteny.tsv
 ```
 
-Reorder contigs by custom-order and plot synteny
+Reorder contigs by custom-order and plot synteny:
 ```
 grep "LOCUS" agrobacterium/47_2_polished_final_renamed.rc.gbk
 synviz reorder --input agrobacterium/47_2_polished_final_renamed.rc.gbk --output agrobacterium/47_2_polished_final_renamed.rc.order.gbk --order chromosome chromid pTi plasmid1 plasmid2
 grep "LOCUS" agrobacterium/47_2_polished_final_renamed.rc.order.gbk
 ```
 
-Reorder contigs by size and plot synteny
+Reorder contigs by size and plot synteny:
 ```
 grep "LOCUS" agrobacterium/47_2_polished_final_renamed.rc.gbk
 synviz reorder --input agrobacterium/47_2_polished_final_renamed.rc.gbk --output agrobacterium/47_2_polished_final_renamed.rc.order.gbk --by_size
 grep "LOCUS" agrobacterium/47_2_polished_final_renamed.rc.order.gbk
 ```
 
-Change contig origin in GenBank file and plot synteny
+Change contig origin in GenBank file and plot synteny:
 ```
 synviz change_origin -i agrobacterium/47_2_polished_final_renamed.rc.order.gbk -o agrobacterium/47_2_polished_final_renamed.rc.order.origin.gbk --origin 346694 --contig chromosome_rc
 synviz synteny --input_list agrolist.txt --output agro_rc.mmseqs.png --alignment mmseqs --annotate annotate_synteny.tsv
 ```
 
-Annotate synteny with specific feature coordinates
+Annotate synteny with specific feature coordinates:
 ```
 synviz synteny --input_list bradylist.txt --output brady_original.mmseqs.png --alignment mmseqs --coordinate coordinates.tsv
 ```
