@@ -6,9 +6,19 @@ A CLI to create and annotate synteny plots for microbial genomes or plasmids. It
 `MUMmer` and/or `MMSeqs` should be installed to run the aligner.
 
 # Installation
-Releasing to PyPI soon.
+Install from PyPI
+```
+pip install PySyntenyViz
+``` 
 
-To build and install from local: use `pip wheel`:
+Install from source:
+```
+git clone https://github.com/acarafat/PySyntenyViz/
+cd PySyntenyViz
+pip install .
+```
+
+Alternatively to build and install from source using `pip wheel`:
 
 ```
 pip install wheel
