@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "PySyntenyViz"
+version = "0.1.0"
+description = "A CLI to create and annotate synteny plots for microbial genomes or plasmids. It uses GenBank files as input and creates alignment on the fly. It provides additional tools to edit the GenBank files to customize the synteny plot."
+readme = "README.md"
+requires-python = ">=3.6"
+authors = [
+    { name = "Arafat Rahman", email = "ac.arafat@gmail.com" }
+]
+homepage = "https://github.com/acarafat/PySyntenyViz"
+
+[project.urls]
+Repository = "https://github.com/acarafat/PySyntenyViz"
+
+[project.dependencies]
+biopython = "*"
+argparse = "*"
+pandas = "*"
+pygenomeviz = "*"
+
+[project.entry-points.console_scripts]
+synviz = "PySyntenyViz.cli:main"
