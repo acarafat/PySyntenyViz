@@ -77,15 +77,7 @@ Coordinate file for annotation using `--coordinate` flag: `coordinates.tsv`
 | Strain_2  | Contig_1  | pan            | 306814 | 308405    | black   | 1      | box       |
 | Strain_2  | Contig_1  | nif/fix        | 330400 | 338787    | magenta | 1      | box       |
 | Strain_2  | Contig_1  | T4SS           | 392045 | 403669    | brown   | 1      | box       |
-| Strain_3  | Contig_1  | nif/fix        | 479987 | 488559    | magenta | 1      | box       |
-| Strain_3  | Contig_1  | T4SS           | 467546 | 479162    | brown   | 1      | box       |
-| Strain_3  | Contig_1  | T4SS           | 429923 | 451808    | brown   | 1      | box       |
-| Strain_3  | Contig_1  | nod            | 369759 | 373679    | blue    | 1      | box       |
-| Strain_3  | Contig_1  | nod            | 357170 | 357766    | blue    | 1      | box       |
-| Strain_3  | Contig_1  | nif/fix        | 157877 | 164992    | magenta | 1      | box       |
-| Strain_3  | Contig_1  | nif/fix        | 108463 | 122788    | magenta | 1      | box       |
-| Strain_3  | Contig_1  | bio            | 78637  | 84154     | black   | 1      | box       |
-| Strain_3  | Contig_1  | nod            | 74067  | 77670     | blue    | 1      | box       |
+
 
 Command for synteny plot:
 ```
@@ -147,4 +139,9 @@ synviz synteny --input_list agrolist.txt --output agro_rc.mmseqs.png --alignment
 Annotate synteny with specific feature coordinates:
 ```
 synviz synteny --input_list bradylist.txt --output brady_original.mmseqs.png --alignment mmseqs --coordinate coordinates.tsv
+```
+## Citation
+```
+Sanath-Kumar R, Rahman A, Ren Z, Reynolds IP, Augusta L, Fuqua C, Weisberg AJ, Wang X. 2025. Linear dicentric chromosomes in bacterial natural isolates reveal common constraints for replicon fusion. mBio 16:e01046-25.
+https://doi.org/10.1128/mbio.01046-25
 ```
