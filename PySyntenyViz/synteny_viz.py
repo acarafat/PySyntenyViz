@@ -9,6 +9,7 @@ from pygenomeviz import  GenomeViz
 from pygenomeviz.parser import Genbank
 from pygenomeviz.align import MUMmer, MMseqs
 
+from matplotlib.patches import Patch
 
 # Get absulate paths of GBK files in a directory
 def get_gbk_path(path_to_gbk):
@@ -54,6 +55,35 @@ def load_face_colors(file_path):
 
     return face_colors
 
+
+# Parse legend file
+def parse_legend(file_path):
+    '''
+    INPUT: Text file containing legends information in TSV format. It should contain face_color and label as header.
+    OUTPUT: List containing color and label: 
+    handles=[
+        Patch(color="olive", label="$\it{vir}$ genes"),
+        Patch(color="orange", label="T-DNA/Oncogenes")
+    ]
+    '''
+    legends = []
+    handle = []
+
+    # parse legends file
+    with open(file_path, newline='') as fh:
+        reader = csv.DictReader(fh, delimiter='\t')
+        for row in reader:
+            legends.append(row)
+    
+    # reformat for matplotlib handles
+    for i in legends:
+        fc = i["face_color"]
+        label = i["label"]
+        new_patch = Patch(color=fc, label=label)
+        handle.append(new_patch)
+
+    return handle
+
 # Given a paritcular feature, define it's face color and label based on face_color_dict
 def parse_feature_fc(feature, face_color_dict):
     '''
@@ -76,7 +106,7 @@ def parse_feature_fc(feature, face_color_dict):
 
 
 # Plot synteny
-def plot_synteny(gbk_list, output_png, annotate_file=None, coordinate_file=None, alignment=None):
+def plot_synteny(gbk_list, output_png, annotate_file=None, coordinate_file=None, alignment=None, label=None, legend=None):
     '''
     INPUT: A list contianing parsed Genbank objects and A list of pairwise coordinates of Mummer alignment
     OUTPUT: It plots the synteny plot. Nothing returns in output.
@@ -112,7 +142,10 @@ def plot_synteny(gbk_list, output_png, annotate_file=None, coordinate_file=None,
         # Plot individual contigs.
         for seqid, features in gbk.get_seqid2features(feature_type = 'source').items():
             segment = track.get_segment(seqid)
-            segment.add_features(features, fc="skyblue", lw=0.5, label_handler=lambda s: str(seqid))
+            if label != None:
+                segment.add_features(features, fc="skyblue", lw=0.5, label_handler=lambda s: str(seqid))
+            else:
+                segment.add_features(features, fc="skyblue", lw=0.5)
 
             # Plot target features based on the coordinate tsv file, if provided
             if annotate_file == None and coordinate_file != None:
@@ -120,6 +153,7 @@ def plot_synteny(gbk_list, output_png, annotate_file=None, coordinate_file=None,
                     if entry['gbk'] == gbk.name and entry['locus'] == str(seqid):
                         segment.add_feature(int(entry['start']), int(entry['end']), int(entry['strand']), 
                                             fc = entry['color'], label = entry['label'], plotstyle=entry['plotstyle'])
+
         
         # Remove `source`
         gbk_f_types.remove("source")
@@ -135,7 +169,10 @@ def plot_synteny(gbk_list, output_png, annotate_file=None, coordinate_file=None,
                     if f_lab != '':
                         segment = track.get_segment(seqid)
                         # Add features to the segment with dynamic face color
-                        segment.add_features(f, fc=face_color, lw=0.5, plotstyle='rbox', label_handler = lambda s: f_lab)
+                        if legend == None:
+                            segment.add_features(f, fc=face_color, ec='none', lw=0.5, plotstyle='rbox', label_handler = lambda s: f_lab)
+                        else:
+                            segment.add_features(f, fc=face_color, ec='none', lw=0.5, plotstyle='rbox')
                 else:
                     face_color = 'ivory'
                     f_lab = ''
@@ -157,12 +194,15 @@ def plot_synteny(gbk_list, output_png, annotate_file=None, coordinate_file=None,
     print('Plotting synteny ...')
     if len(align_coords) > 0:
         min_ident = int(min([ac.identity for ac in align_coords if ac.identity]))
-        color, inverted_color = "chocolate", "limegreen"
+        color, inverted_color = "limegreen", "chocolate"
         for ac in align_coords:
             gv.add_link(ac.query_link, ac.ref_link, color=color, inverted_color=inverted_color, v=ac.identity, vmin=min_ident, curve=True)
         gv.set_colorbar([color, inverted_color], vmin=min_ident)
 
     fig = gv.plotfig()
+    if legend != None:
+        handles = parse_legend(legend)
+        legend = fig.legend(handles=handles, bbox_to_anchor=(1.05,1.05))
     fig.savefig(f"{output_png}")
 
 
@@ -176,6 +216,8 @@ def main(args=None):
     parser.add_argument('--annotate', '-a', type=str, required=False, help="Sequence features from GenBank file to annotate.")
     parser.add_argument('--coordinate', '-c', type=str, required=False, help="Coordinate position from GenBank file to annotate.")
     parser.add_argument('--alignment', '-t', type=str, required=False, help="Alignment algorithm to use. Default MMSeqs. Options: `mummer` and `mmseqs` (mummer for fast genome level alignment, mmseqs for fast protein level alignment).")
+    parser.add_argument('--label', type=str, required=False, help="If True, plot contig-labels")
+    parser.add_argument('--legend', type=str, required=False, help="Path to legend file")
 
     args = parser.parse_args(args)
 
@@ -185,7 +227,7 @@ def main(args=None):
     else:
         gbk_list = get_gbk_file(args.input_list)
 
-    plot_synteny(gbk_list, args.output, args.annotate, args.coordinate, args.alignment)
+    plot_synteny(gbk_list, args.output, args.annotate, args.coordinate, args.alignment, args.label, args.legend)
 
 # Main
 if __name__ == "__main__":
