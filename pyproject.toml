@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "PySyntenyViz"
-version = "0.2"
+version = "0.2.1"
 description = "A CLI to create and annotate synteny plots for microbial genomes or plasmids. It uses GenBank files as input and creates alignment on the fly. It provides additional tools to edit the GenBank files to customize the synteny plot."
 readme = "README.md"
 requires-python = ">=3.6"
