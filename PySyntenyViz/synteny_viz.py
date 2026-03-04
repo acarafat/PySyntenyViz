@@ -1,6 +1,7 @@
 #!/bin/python3
 import os, sys
 import csv
+import itertools
 
 import argparse
 
@@ -50,8 +51,9 @@ def load_face_colors(file_path):
     with open(file_path) as f:
         headers = f.readline().split()
         for line in f:
-            values = line.split()
-            face_colors.append(dict(zip(headers, values)))
+            values = line.strip().split('\t') 
+            row_dict = dict(itertools.zip_longest(headers, values, fillvalue=''))
+            face_colors.append(row_dict)
 
     return face_colors
 
