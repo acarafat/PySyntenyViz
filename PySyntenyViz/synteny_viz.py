@@ -1,7 +1,7 @@
 #!/bin/python3
-
 import os, sys
 import csv
+import itertools
 
 import argparse
 
@@ -40,41 +40,60 @@ def get_gbk_file(gbk_path_file):
 
     return gbk_list
 
-
 # Parse annotation meta file
 def load_face_colors(file_path):
-    '''
-    INPUT: Annotation tsv file which should have `feature_type`, `qualifier`, `value`, `label`, and `face_color`.
-    OUTPUT: Parse the file as dictionary
-    '''
     face_colors = []
-    with open(file_path, newline='') as file:
-        reader = csv.DictReader(file, delimiter='\t')
-        for row in reader:
-            face_colors.append(row)
+    ''' 
+    INPUT: Annotation tsv file which should have feature_type, qualifier, value, label, and face_color. 
+    OUTPUT: Parse the file as dictionary 
+    '''
+
+    with open(file_path) as f:
+        headers = f.readline().split()
+        for line in f:
+            values = line.strip().split('\t') 
+            row_dict = dict(itertools.zip_longest(headers, values, fillvalue=''))
+            face_colors.append(row_dict)
 
     return face_colors
+
 
 
 # Parse legend file
 def parse_legend(file_path):
     '''
     INPUT: Text file containing legends information in TSV format. It should contain face_color and label as header.
-    OUTPUT: List containing color and label: 
+    OUTPUT: List containing color and label:
     handles=[
-        Patch(color="olive", label="$\it{vir}$ genes"),
-        Patch(color="orange", label="T-DNA/Oncogenes")
+       	Patch(color="olive", label="$\it{vir}$ genes"),
+       	Patch(color="orange", label="T-DNA/Oncogenes")
     ]
     '''
     legends = []
     handle = []
 
-    # parse legends file
+    ## parse legends file
+    #with open(file_path, newline='') as fh:
+    #    reader = csv.DictReader(fh, delimiter='\t')
+    #    for row in reader:
+    #        legends.append(row)
     with open(file_path, newline='') as fh:
-        reader = csv.DictReader(fh, delimiter='\t')
-        for row in reader:
-            legends.append(row)
-    
+        header = fh.readline()
+
+        # detect delimiter
+        if '\t' in header:
+            delimiter = '\t'
+            fh.seek(0)
+            reader = csv.DictReader(fh, delimiter=delimiter)
+            for row in reader:
+                legends.append(row)
+        else:
+            # whitespace-separated
+            headers = header.split()
+            for line in fh:
+                values = line.split()
+                legends.append(dict(zip(headers, values)))
+
     # reformat for matplotlib handles
     for i in legends:
         fc = i["face_color"]
@@ -128,7 +147,7 @@ def plot_synteny(gbk_list, output_png, annotate_file=None, coordinate_file=None,
 
     #############################
     # Plot contigs and features #
-    ############################# 
+    #############################
     for gbk in gbk_list:
         track = gv.add_feature_track(gbk.name, gbk.get_seqid2size())
 
@@ -151,10 +170,10 @@ def plot_synteny(gbk_list, output_png, annotate_file=None, coordinate_file=None,
             if annotate_file == None and coordinate_file != None:
                 for entry in coord_dict:
                     if entry['gbk'] == gbk.name and entry['locus'] == str(seqid):
-                        segment.add_feature(int(entry['start']), int(entry['end']), int(entry['strand']), 
+                        segment.add_feature(int(entry['start']), int(entry['end']), int(entry['strand']),
                                             fc = entry['color'], label = entry['label'], plotstyle=entry['plotstyle'])
 
-        
+
         # Remove `source`
         gbk_f_types.remove("source")
 
@@ -183,7 +202,7 @@ def plot_synteny(gbk_list, output_png, annotate_file=None, coordinate_file=None,
     if alignment in ["mummer", None]:
         print('Creating MUMmer alignment ...')
         align_coords = MUMmer(gbk_list).run()
-        
+
     elif alignment == "mmseqs":
         print('Creating MMseqs alignment ...')
         align_coords = MMseqs(gbk_list).run()
@@ -204,6 +223,7 @@ def plot_synteny(gbk_list, output_png, annotate_file=None, coordinate_file=None,
         handles = parse_legend(legend)
         legend = fig.legend(handles=handles, bbox_to_anchor=(1.05,1.05))
     fig.savefig(f"{output_png}")
+
 
 
 # Parse input, program logic-flow
