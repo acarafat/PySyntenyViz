@@ -28,9 +28,11 @@ python3 setup.py sdist bdist_wheel
 pip install dist/bioinfutils-0.1.0-py3-none-any.whl --force-reinstall
 ```
 
+Also, you can use the Dockerfile to build and run image. 
+
 ## Usage
 ```
-synviz <command> [<args>]
+pysyntenyviz <command> [<args>]
 ```
 Available commands: `synteny`, `revcomp`, `reorder`, `change_origin`
 
@@ -41,7 +43,7 @@ Available commands: `synteny`, `revcomp`, `reorder`, `change_origin`
 - `reorder`: Reorder contigs of GenBakn file
 
 ## Getting help
-Use `-h` or `--h` flag to get details of the command, i.e.: `synviz <command> --help` 
+Use `-h` or `--h` flag to get details of the command, i.e.: `pysyntenyviz <command> --help` 
 
 
 ## Annotation options
@@ -81,7 +83,7 @@ Coordinate file for annotation using `--coordinate` flag: `coordinates.tsv`
 
 Command for synteny plot:
 ```
-synviz synteny --input_list strainlist.txt --output synteny_output.pdf --alignment mmseqs --coordinate coordinates.tsv
+pysyntenyviz synteny --input_list strainlist.txt --output synteny_output.pdf --alignment mmseqs --coordinate coordinates.tsv
 ```
 
 
@@ -96,49 +98,49 @@ If you want to use feature types for generic annotation, use the `--annotate` fl
 
 Command:
 ```
-synviz synteny --input_list strainlist.txt --output synteny_output.pdf --alignment mmseqs --annotate annotate.tsv
+pysyntenyviz synteny --input_list strainlist.txt --output synteny_output.pdf --alignment mmseqs --annotate annotate.tsv
 ```
 
 ## Examples
 Read GenBank files as input from directory, plot Agrobacterium synteny with MMSeqs2 alignment and annotate by GenBank feature:
 ```
-synviz synteny --input_dir agrobacterium --output agro_original.png --annotate annotate_synteny.tsv --alignment mmseqs
+pysyntenyviz synteny --input_dir agrobacterium --output agro_original.png --annotate annotate_synteny.tsv --alignment mmseqs
 ```
 
 Use MUMmer alignment instead:
 ```
-synviz synteny --input_dir agrobacterium --output agro_original.mummer.png --annotate annotate_synteny.tsv
+pysyntenyviz synteny --input_dir agrobacterium --output agro_original.mummer.png --annotate annotate_synteny.tsv
 ```
 
 Reverse-complement a contig and plot synteny, take input from a list:
 ```
-synviz revcomp -i agrobacterium/47_2_polished_final_renamed.gbk -o agrobacterium/47_2_polished_final_renamed.rc.gbk -c chromosome
-synviz synteny --input_list agrolist.txt --output agro_rc.mmseqs.png --alignment mmseqs --annotate annotate_synteny.tsv
+pysyntenyviz revcomp -i agrobacterium/47_2_polished_final_renamed.gbk -o agrobacterium/47_2_polished_final_renamed.rc.gbk -c chromosome
+pysyntenyviz synteny --input_list agrolist.txt --output agro_rc.mmseqs.png --alignment mmseqs --annotate annotate_synteny.tsv
 ```
 
 Reorder contigs by custom-order and plot synteny:
 ```
 grep "LOCUS" agrobacterium/47_2_polished_final_renamed.rc.gbk
-synviz reorder --input agrobacterium/47_2_polished_final_renamed.rc.gbk --output agrobacterium/47_2_polished_final_renamed.rc.order.gbk --order chromosome chromid pTi plasmid1 plasmid2
+pysyntenyviz reorder --input agrobacterium/47_2_polished_final_renamed.rc.gbk --output agrobacterium/47_2_polished_final_renamed.rc.order.gbk --order chromosome chromid pTi plasmid1 plasmid2
 grep "LOCUS" agrobacterium/47_2_polished_final_renamed.rc.order.gbk
 ```
 
 Reorder contigs by size and plot synteny:
 ```
 grep "LOCUS" agrobacterium/47_2_polished_final_renamed.rc.gbk
-synviz reorder --input agrobacterium/47_2_polished_final_renamed.rc.gbk --output agrobacterium/47_2_polished_final_renamed.rc.order.gbk --by_size
+pysyntenyviz reorder --input agrobacterium/47_2_polished_final_renamed.rc.gbk --output agrobacterium/47_2_polished_final_renamed.rc.order.gbk --by_size
 grep "LOCUS" agrobacterium/47_2_polished_final_renamed.rc.order.gbk
 ```
 
 Change contig origin in GenBank file and plot synteny:
 ```
-synviz change_origin -i agrobacterium/47_2_polished_final_renamed.rc.order.gbk -o agrobacterium/47_2_polished_final_renamed.rc.order.origin.gbk --origin 346694 --contig chromosome_rc
-synviz synteny --input_list agrolist.txt --output agro_rc.mmseqs.png --alignment mmseqs --annotate annotate_synteny.tsv
+pysyntenyviz change_origin -i agrobacterium/47_2_polished_final_renamed.rc.order.gbk -o agrobacterium/47_2_polished_final_renamed.rc.order.origin.gbk --origin 346694 --contig chromosome_rc
+pysyntenyviz synteny --input_list agrolist.txt --output agro_rc.mmseqs.png --alignment mmseqs --annotate annotate_synteny.tsv
 ```
 
 Annotate synteny with specific feature coordinates:
 ```
-synviz synteny --input_list bradylist.txt --output brady_original.mmseqs.png --alignment mmseqs --coordinate coordinates.tsv
+pysyntenyviz synteny --input_list bradylist.txt --output brady_original.mmseqs.png --alignment mmseqs --coordinate coordinates.tsv
 ```
 ## Citation
 ```
