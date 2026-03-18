@@ -3,3 +3,5 @@ dist/*
 test/*
 PySyntenyViz.egg-info/*
 .DS_Store
+.dockerignore
+.gitignore

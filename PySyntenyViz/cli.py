@@ -14,11 +14,11 @@ commands = {
 
 def main(args=None):
     if len(sys.argv) < 2:
-        print("Usage: synviz <command> [<args>]")
+        print("Usage: pysyntenyviz <command> [<args>]")
         print("")
         print("Available commands: synteny, revcomp, reorder, change_origin")
         print("")
-        print("Use `-h` or `--h` flag to get details of the command, i.e.: `synviz <command> --help`")
+        print("Use `-h` or `--h` flag to get details of the command, i.e.: `pysyntenyviz <command> --help`")
         sys.exit(1)
 
     command = sys.argv[1]
@@ -30,8 +30,11 @@ def main(args=None):
         # Call the main() function of the module, passing all remaining sys.argv arguments
         module.main(sys.argv[2:])  # Pass remaining arguments to module's main()
     else:
-        print(f"Error: Unrecognized command '{command}'")
-        print("Available commands:", ", ".join(commands.keys()))
+        print("Usage: pysyntenyviz <command> [<args>]")
+        print("")
+        print("Available commands: synteny, revcomp, reorder, change_origin")
+        print("")
+        print("Use `-h` or `--h` flag to get details of the command, i.e.: `pysyntenyviz <command> --help`")
         sys.exit(1)
 
 
