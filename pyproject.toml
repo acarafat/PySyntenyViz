@@ -24,4 +24,4 @@ homepage = "https://github.com/acarafat/PySyntenyViz"
 Repository = "https://github.com/acarafat/PySyntenyViz"
 
 [project.entry-points.console_scripts]
-pysyntenyviz = "PySyntenyViz.cli:main"
+synviz = "PySyntenyViz.cli:main"
